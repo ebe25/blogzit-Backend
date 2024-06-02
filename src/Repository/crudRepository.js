@@ -18,6 +18,7 @@ class CrudRepository{
     async get(id){
         try{
             const response=await this.model.findById(id);
+            console.log("response",response);
             return response;
 
         }
@@ -44,6 +45,17 @@ class CrudRepository{
         catch(err){
             throw err;
         }
+    }
+    async getAllTweet(){
+        try{
+            const response=await this.model.find();
+            return response;
+
+        }
+        catch(err){
+            throw err;
+        }
+
     }
 
 
