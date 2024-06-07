@@ -16,7 +16,6 @@ const userSchema=new mongoose.Schema({
     },
     name:{
         type:String,
-        required:true
     }
 })
 userSchema.pre('save',function(next){
