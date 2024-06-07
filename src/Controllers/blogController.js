@@ -73,7 +73,7 @@ const getBlogById=async(req,res)=>{
         return res.status(500).json({
             data:{},
             status:false,
-            message:"Cannot signUp",
+            message:"Blog not found",
             err:err.message
         })
 

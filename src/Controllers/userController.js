@@ -1,7 +1,9 @@
 const userService=require("../Services/userService");
 const userServiceObject=new userService();
 const signUp=async(req,res)=>{
+    console.log("request",req.body)
     try{
+
         const response=await userServiceObject.signup(req.body);
         return res.status(200).json({
             data:response,
@@ -14,6 +16,7 @@ const signUp=async(req,res)=>{
 
     }
     catch(err){
+        console.log(err)
         return res.status(500).json({
             data:{},
             status:false,
