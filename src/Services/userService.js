@@ -12,10 +12,10 @@ class userService{
             throw err;
         }
     }
-    async getByEmail(data){
+    async getByEmail(email){
         try{
-            const response= await this.userRespository.getWithEmail(data);
-            return user;
+            const response= await this.userRespository.getByAttribute(email);
+            return response;
 
 
         }
@@ -25,8 +25,7 @@ class userService{
     }
     async logIn(data){
         try{
-            const user=await this.userRespository.getByEmail({email:data.email});
-           
+            const user=await this.userRespository.getByAttribute(data.email);
             if(!user){
                 throw new Error("User not present in the database");
             }

@@ -3,16 +3,14 @@ const blogServiceObj=new blogService();
 const createBlog=async(req,res)=>{
     try{
         const response=await blogServiceObj.createBlog(req.body);
-        console.log(response);
-        return res.status(200).json({
+  
+        return res.status(201).json({
             data:response,
             status:true,
             message:"Created the blog",
             err:{}
 
         })
-
-        
         
     }
     catch(err){
@@ -30,7 +28,7 @@ const createBlog=async(req,res)=>{
 const getBlog=async(req,res)=>{
     try{
         const response=await blogServiceObj.getAllBlogs();
-        console.log(response);
+      
         return res.status(200).json({
             data:response,
             status:true,
@@ -56,7 +54,6 @@ const getBlog=async(req,res)=>{
 }
 const getBlogById=async(req,res)=>{
     try{
-        console.log(req.params.id);
         const response=await blogServiceObj.getBlogById(req.params.id);
         return res.status(200).json({
             data:response,
@@ -81,8 +78,32 @@ const getBlogById=async(req,res)=>{
     }
 
 }
+
+const blogsSeeder = async(req,res)=>{
+    try{
+        const response=await blogServiceObj.seedBlogs(req.body);
+        return res.status(201).json({
+            data:response,
+            status:true,
+            message:"Seeded posts",
+            err:{}
+
+        })
+
+        
+        
+    }
+    catch(err){
+        return res.status(500).json({
+            data:{},
+            status:false,
+            message:"Err while seeding blogs.",
+            err:err.message
+        })
+    }}
 module.exports={
     createBlog,
     getBlog,
-    getBlogById
+    getBlogById,
+    blogsSeeder
 }
