@@ -1,4 +1,4 @@
-const blog=require("../Models/Blog");
+const blog=require("../Models/blog");
 const crudRepository=require("./crudRepository");
 class blogRepository extends crudRepository{
     constructor(){
