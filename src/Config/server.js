@@ -4,5 +4,5 @@ dotenv.config();
 module.exports = {
   PORT: process.env.PORT,
   JWT_KEY: process.env.JWT_KEY,
-  SALT: process.env.SALT
+  SALT_ROUND: parseInt(process.env.SALT_ROUND)
 };

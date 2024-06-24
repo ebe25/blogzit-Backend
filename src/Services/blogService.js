@@ -5,15 +5,16 @@ class blogService {
     this.blogRepositoryObj = new blogRepository();
     this.UserRepositoryObj = new UserRepository();
   }
-  async createBlog(data) {
+  async createBlog(data, userId) {
     try {
-      const dataToSend = await this.UserRepositoryObj.get(data.userId);
-      const newData = {
+      const populateBlogsData = {
         ...data,
-        name: dataToSend.name,
+        author: userId,
+        likes: 100, 
+        views: 100,
       };
 
-      const result = await this.blogRepositoryObj.create(newData);
+      const result = await this.blogRepositoryObj.create(populateBlogsData);
       return result;
     } catch (err) {
       throw err;
@@ -34,6 +35,16 @@ class blogService {
       return result;
     } catch (err) {
       throw err;
+    }
+  }
+
+  async getUserBlogs(userId) {
+    try {
+      const blogs = await this.getAllBlogs();
+      const userBlogs = blogs.filter((blog) => blog.author == userId);
+      return userBlogs;
+    } catch (error) {
+      throw error;
     }
   }
 

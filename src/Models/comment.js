@@ -15,17 +15,19 @@ const mongoose = require("mongoose");
 const commentSchema = mongoose.Schema(
   {
     author: {
-      name: {
-        type: String,
-        required: true,
-      },
-      picture: {
-        type: String, //s3 url
-      },
+      type: mongoose.Schema.ObjectId,
+      required: true,
+      ref: "User",
     },
+
     content: {
       type: String,
       required: true,
+    },
+    blogId: {
+      type: mongoose.Schema.ObjectId,
+      required: true,
+      ref: "Blog",
     },
   },
   {
@@ -33,4 +35,4 @@ const commentSchema = mongoose.Schema(
   }
 );
 const Comment = mongoose.model("Comment", commentSchema);
-module.exports = {Comment, commentSchema}
+module.exports = {Comment, commentSchema};

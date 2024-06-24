@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {commentSchema} = require("./comment")
+const {commentSchema} = require("./comment");
 
 const BlogSchema = new mongoose.Schema(
   {
@@ -11,25 +11,23 @@ const BlogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-    },
-    name: {
-      type: String,
-    },
+    author: {     //populate
+        type: mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref: "User",
+      },
     tags: {
       type: [String],
       required: true,
     },
-    likes: {
-      type: Number,
+    likes: {    //populate
+      type: Number,  
     },
-    comments: {
+    comments: {   //populate
       type: [commentSchema],
-      ref: "comment",
+      ref: "Comment",
     },
-    views: {
+    views: {         //populate
       type: Number,
       default: undefined,
     },
@@ -38,12 +36,13 @@ const BlogSchema = new mongoose.Schema(
       required: true,
     },
     picture: {
-        type:String, //s3 blog cover image,
-        required: true
+      type: String, //s3 blog cover image,
+      required: true,
     },
     status: {
       type: String,
       enum: ["published", "draft"],
+      default: "draft"
     },
   },
   {

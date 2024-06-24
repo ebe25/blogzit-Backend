@@ -1,4 +1,3 @@
-const user=require("../Models/user");
 class CrudRepository {
   constructor(model) {
     this.model = model;
@@ -24,7 +23,6 @@ class CrudRepository {
   async get(id) {
     try {
       const response = await this.model.findById(id);
-
       return response;
     } catch (err) {
       throw err;

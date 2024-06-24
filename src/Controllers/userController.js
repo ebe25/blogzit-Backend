@@ -33,7 +33,7 @@ const signIn = async (req, res) => {
       data: {},
       status: false,
       message: "Cannot authenticate",
-      err: {err},
+      err: err,
     });
   }
 };
@@ -58,8 +58,28 @@ const getUserByEmail = async (req, res) => {
     });
   }
 };
+
+const getUser = async(req,res)=>{
+  try {
+    const user  = await userServiceObject.getUser(req.params.id);
+    return res.status(200).json({
+      data: user,
+      success: true,
+      message: "User found",
+      error: null
+    })
+  } catch (error) {
+    return res.status(200).json({
+      data: user,
+      success: false,
+      message: "Something went wrong",
+      error: error.message
+    })
+  }
+}
 module.exports = {
   signUp,
   signIn,
   getUserByEmail,
+  getUser
 };

@@ -4,6 +4,7 @@ const CrudRepository=require("./crudRepository");
 class UserRepository extends CrudRepository{
     constructor(){
         super(user);
+        
     }
     
 
